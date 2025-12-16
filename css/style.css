@@ -411,8 +411,31 @@ footer {
 
     /* Navbar Mobile */
     .navbar {
+        display: flex;
         justify-content: center;
+        /* Center logo horizontally */
+        align-items: center;
         padding: 15px 5%;
+        height: 70px;
+        /* Define fixed height for consistency */
+        position: fixed;
+        /* Ensure fixed */
+    }
+
+    /* SPECIFICITY FIX: Only target navbar logo */
+    .navbar .logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1002;
+    }
+
+    /* Reset/Ensure Footer Logo acts normally (though redundant if above is fixed, good for safety) */
+    footer .logo {
+        position: static !important;
+        transform: none !important;
+        margin-bottom: 20px !important;
+        /* Restore margin */
     }
 
     .logo img {
@@ -425,7 +448,8 @@ footer {
         left: 20px;
         top: 50%;
         transform: translateY(-50%);
-        z-index: 1001;
+        z-index: 1003;
+        /* Ensure above logo if overlap (unlikely) */
     }
 
     .hamburger.active span:nth-child(1) {
@@ -468,7 +492,9 @@ footer {
     .hero {
         min-height: 100vh;
         height: auto;
-        padding: 100px 0 50px;
+        /* Increased padding-top from 100px to 140px to prevent overlap */
+        padding: 140px 0 50px;
+        /* Increased padding relative to navbar height */
     }
 
     .hero-container {
@@ -521,7 +547,10 @@ footer {
     }
 
     .section-header h2 {
-        font-size: 2rem;
+        font-size: 1.8rem;
+        /* Reduced from 2rem for better fit with long words */
+        word-wrap: break-word;
+        /* Ensure no overflow */
     }
 
     /* Cards Grid */
@@ -551,6 +580,16 @@ footer {
     footer {
         padding: 40px 20px;
         margin-top: 60px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        /* Force spacing between logo and texts */
+    }
+
+    footer .logo {
+        margin-bottom: 0 !important;
+        /* Override inline style to use gap instead */
     }
 }
 
@@ -575,7 +614,8 @@ footer {
     }
 
     .section-header h2 {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
+        /* Further reduced for small screens */
     }
 
     .card {
@@ -584,6 +624,22 @@ footer {
 
     .nav-links {
         width: 80%;
+    }
+}
+
+/* Z Fold & Ultra Narrow Devices */
+@media (max-width: 360px) {
+    .section-header h2 {
+        font-size: 1.3rem;
+        /* Drastic reduction for Fold */
+        letter-spacing: 0.5px;
+        /* Reduce spacing to save horizontal space */
+        word-break: break-all;
+        /* Force break if absolutely necessary */
+    }
+
+    .hero-text h1 {
+        font-size: 1.8rem;
     }
 }
 
